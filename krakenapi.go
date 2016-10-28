@@ -20,7 +20,7 @@ const (
 	// APIVersion is the official Kraken API Version Number
 	APIVersion = "0"
 	// APIUserAgent identifies this library with the Kraken API
-	APIUserAgent = "Kraken GO API Agent (https://github.com/beldur/kraken-go-api-client)"
+	APIUserAgent = "Kraken GO API Agent (https://github.com/gonium/kraken-go-api-client)"
 )
 
 // List of valid public methods
@@ -30,6 +30,7 @@ var publicMethods = []string{
 	"AssetPairs",
 	"Ticker",
 	"Depth",
+	"OHLC",
 	"Trades",
 	"Spread",
 }
@@ -81,13 +82,23 @@ func (api *KrakenApi) Time() (*TimeResponse, error) {
 	return resp.(*TimeResponse), nil
 }
 
+// returns the servers Open High Low Close (OHLC) data.
+func (api *KrakenApi) OHLC(pairs ...string) (*OHLCResponse, error) {
+	resp, err := api.queryPublic("OHLC", url.Values{
+		"pair": {strings.Join(pairs, ",")},
+	}, &OHLCResponse{})
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*OHLCResponse), nil
+}
+
 // Assets returns the servers available assets
 func (api *KrakenApi) Assets() (*AssetsResponse, error) {
 	resp, err := api.queryPublic("Assets", nil, &AssetsResponse{})
 	if err != nil {
 		return nil, err
 	}
-
 	return resp.(*AssetsResponse), nil
 }
 
@@ -195,6 +206,7 @@ func (api *KrakenApi) doRequest(reqURL string, values url.Values, headers map[st
 		jsonData.Result = typ
 	}
 
+	fmt.Printf("Body: %s", body)
 	err = json.Unmarshal(body, &jsonData)
 	if err != nil {
 		return nil, fmt.Errorf("Could not execute request! (%s)", err.Error())

@@ -126,6 +126,42 @@ type AssetInfo struct {
 	DisplayDecimals int `json:"display_decimals"`
 }
 
+// OHLCResponse includes OHLC informations
+type OHLCResponse struct {
+	XETHXXBT PairOHLCInfo
+	XETHZCAD PairOHLCInfo
+	XETHZEUR PairOHLCInfo
+	XETHZGBP PairOHLCInfo
+	XETHZJPY PairOHLCInfo
+	XETHZUSD PairOHLCInfo
+	XLTCZCAD PairOHLCInfo
+	XLTCZEUR PairOHLCInfo
+	XLTCZUSD PairOHLCInfo
+	XXBTXLTC PairOHLCInfo
+	XXBTXNMC PairOHLCInfo
+	XXBTXXDG PairOHLCInfo
+	XXBTXXLM PairOHLCInfo
+	XXBTXXRP PairOHLCInfo
+	XXBTZCAD PairOHLCInfo
+	XXBTZEUR PairOHLCInfo
+	XXBTZGBP PairOHLCInfo
+	XXBTZJPY PairOHLCInfo
+	XXBTZUSD PairOHLCInfo
+	Last     int64 `json:"last"`
+}
+
+type PairOHLCInfo struct {
+	Values [][]string
+	//Time   int64
+	//Open   string
+	//High   string
+	//Low    string
+	//Close  string
+	//VWAP   string
+	//Volume string
+	//Count  int
+}
+
 // TickerResponse includes the requested ticker pairs
 type TickerResponse struct {
 	XETHXXBT PairTickerInfo
