@@ -126,45 +126,6 @@ type AssetInfo struct {
 	DisplayDecimals int `json:"display_decimals"`
 }
 
-// OHLCResponse includes OHLC informations
-type OHLCResponse struct {
-	XETHXXBT []PairOHLCInfo `json:"XETHXXBT,omitempty"`
-	XETHZCAD []PairOHLCInfo `json:"XETHZCAD,omitempty"`
-	XETHZEUR []PairOHLCInfo `json:"XETHZEUR,omitempty"`
-	XETHZGBP []PairOHLCInfo `json:"XETHZGBP,omitempty"`
-	XETHZJPY []PairOHLCInfo `json:"XETHZJPY,omitempty"`
-	XETHZUSD []PairOHLCInfo `json:"XETHZUSD,omitempty"`
-	XLTCZCAD []PairOHLCInfo `json:"XLTCZCAD,omitempty"`
-	XLTCZEUR []PairOHLCInfo `json:"XLTCZEUR,omitempty"`
-	XLTCZUSD []PairOHLCInfo `json:"XLTCZUSD,omitempty"`
-	XXBTXLTC []PairOHLCInfo `json:"XXBTXLTC,omitempty"`
-	XXBTXNMC []PairOHLCInfo `json:"XXBTXNMC,omitempty"`
-	XXBTXXDG []PairOHLCInfo `json:"XXBTXXDG,omitempty"`
-	XXBTXXLM []PairOHLCInfo `json:"XXBTXXLM,omitempty"`
-	XXBTXXRP []PairOHLCInfo `json:"XXBTXXRP,omitempty"`
-	XXBTZCAD []PairOHLCInfo `json:"XXBTZCAD,omitempty"`
-	XXBTZEUR PairOHLCInfo   `json:"XXBTZEUR,omitempty"`
-	XXBTZGBP []PairOHLCInfo `json:"XXBTZGBP,omitempty"`
-	XXBTZJPY []PairOHLCInfo `json:"XXBTZJPY,omitempty"`
-	XXBTZUSD []PairOHLCInfo `json:"XXBTZUSD,omitempty"`
-	Last     int            `json:"last"`
-}
-
-type PairOHLCInfo struct {
-	Values [][]interface{} `json:"-"`
-}
-
-type PairOHLCValues struct {
-	Time   int64
-	Open   string
-	High   string
-	Low    string
-	Close  string
-	VWAP   string
-	Volume string
-	Count  int64
-}
-
 // TickerResponse includes the requested ticker pairs
 type TickerResponse struct {
 	XETHXXBT PairTickerInfo

@@ -82,17 +82,6 @@ func (api *KrakenApi) Time() (*TimeResponse, error) {
 	return resp.(*TimeResponse), nil
 }
 
-// returns the servers Open High Low Close (OHLC) data.
-func (api *KrakenApi) OHLC(pairs ...string) (*OHLCResponse, error) {
-	resp, err := api.queryPublic("OHLC", url.Values{
-		"pair": {strings.Join(pairs, ",")},
-	}, &OHLCResponse{})
-	if err != nil {
-		return nil, err
-	}
-	return resp.(*OHLCResponse), nil
-}
-
 // Assets returns the servers available assets
 func (api *KrakenApi) Assets() (*AssetsResponse, error) {
 	resp, err := api.queryPublic("Assets", nil, &AssetsResponse{})
@@ -206,7 +195,6 @@ func (api *KrakenApi) doRequest(reqURL string, values url.Values, headers map[st
 		jsonData.Result = typ
 	}
 
-	fmt.Printf("Body: %s", body)
 	err = json.Unmarshal(body, &jsonData)
 	if err != nil {
 		return nil, fmt.Errorf("Could not execute request! (%s)", err.Error())

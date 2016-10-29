@@ -42,14 +42,6 @@ func TestAssets(t *testing.T) {
 	}
 }
 
-func TestOHLC(t *testing.T) {
-	resp, err := publicAPI.OHLC(XXBTZEUR)
-	if err != nil {
-		t.Errorf("OHLC() should not return an error, got %s", err)
-	}
-	t.Errorf("%+v", resp)
-}
-
 func TestAssetPairs(t *testing.T) {
 	resp, err := publicAPI.AssetPairs()
 	if err != nil {
